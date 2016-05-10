@@ -31,11 +31,12 @@ g <- graph.data.frame(ga.data,directed = T)
          ben        avery 
          0.0          0.0 
     
+```
 
 ```R
   > which.max(betweenness(g))
-karev 
-    6 
+    karev 
+       6 
 ```
 
 
