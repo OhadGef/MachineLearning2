@@ -116,7 +116,7 @@ memb <- membership(fc)
 
 ``` 
 
-![] (1#algo.png)
+![](1#algo.png)
 
 
 
@@ -147,5 +147,6 @@ memb <- membership(fc)
 ```R
 plot(g2, vertex.size=5, vertex.label=NA,vertex.color=memb, asp=FALSE)
 ```
+
 ![](2#algo.png)
 
