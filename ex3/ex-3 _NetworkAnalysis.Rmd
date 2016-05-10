@@ -1,10 +1,11 @@
+# Ex-3 Network Analysis
+
 ---
 title: "ex-3 _NetworkAnalysis"
 author: "Ohad Gefen & Nadav Gilron"
 date: "May 10, 2016"
 output: html_document
 ---
-# Ex-3 Network Analysis
 
 ## Question 1 
 
@@ -18,7 +19,7 @@ g <- graph.data.frame(ga.data,directed = F)
 ### Betweenness
 
 ```
-> betweenness(g)
+ betweenness(g)
         lexi         owen        sloan       torres        derek        karev     o'malley         yang         grey        chief 
          0.0          0.0          5.5         11.0          0.0         15.5         12.0          2.0          7.0          0.0 
   ellis grey   susan grey       bailey        izzie       altman      arizona        colin      preston       kepner      addison 
@@ -26,4 +27,6 @@ g <- graph.data.frame(ga.data,directed = F)
        nancy       olivia mrs. seabury        adele  thatch grey       tucker         hank        denny         finn        steve 
          0.0          0.0          0.0          0.0          0.0          0.0          0.0          0.0          0.0          0.0 
          ben        avery 
-         0.0          0.0 ```
+         0.0          0.0 
+         
+```
