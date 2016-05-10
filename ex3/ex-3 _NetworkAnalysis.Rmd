@@ -97,7 +97,10 @@ karev
 ```R
 g2 <- graph.data.frame(ga.data,directed = F)
 fc <-edge.betweenness.community(g2)
+
 which.max(fc$modularity)
+[1] 26
+
 memb <- membership(fc)
 ```
 
@@ -113,7 +116,10 @@ memb <- membership(fc)
          ben        avery 
            6            1 
 
+```
 
+```R
+plot(g2, vertex.size=5, vertex.label=NA,vertex.color=memb, asp=FALSE)
 ``` 
 
 ![](1algo.png)
@@ -125,8 +131,17 @@ memb <- membership(fc)
 ```R
 g2 <- graph.data.frame(ga.data,directed = F)
 fc <-walktrap.community(g2)
+
 fc$modularity
+
+ [1]  0.00000000 -0.01730106  0.01081313  0.03676469  0.06487888  0.09256054  0.12024221  0.14749134  0.17387544  0.19982699  0.22837371
+[12]  0.25692043  0.28460205  0.31185120  0.33910033  0.36678201  0.39489621  0.42171276  0.44939446  0.45544982  0.48226649  0.47923881
+[23]  0.49567476  0.48875433  0.49394464  0.51470590  0.48269898  0.50562286  0.45804498  0.30449831  0.00000000  0.00000000
+
+
 which.max(fc$modularity)
+[1] 26
+
 memb <- membership(fc)
 ```
 
@@ -149,4 +164,7 @@ plot(g2, vertex.size=5, vertex.label=NA,vertex.color=memb, asp=FALSE)
 ```
 
 ![](2algo.png)
+
+
+
 
