@@ -1,5 +1,3 @@
-# Ex-3 Network Analysis
-
 ---
 title: "ex-3 _NetworkAnalysis"
 author: "Ohad Gefen & Nadav Gilron"
@@ -7,19 +5,23 @@ date: "May 10, 2016"
 output: html_document
 ---
 
+# Ex-3 Network Analysis
+
 ## Question 1 
 
 
 ```R
 library(igraph)
 ga.data <- read.csv('ga_edgelist.csv', header=TRUE)
-g <- graph.data.frame(ga.data,directed = F)
+g <- graph.data.frame(ga.data,directed = T)
 
 ```
 ### Betweenness
 
-```
- betweenness(g)
+```R
+ > betweenness(g)
+ ```
+ ```
         lexi         owen        sloan       torres        derek        karev     o'malley         yang         grey        chief 
          0.0          0.0          5.5         11.0          0.0         15.5         12.0          2.0          7.0          0.0 
   ellis grey   susan grey       bailey        izzie       altman      arizona        colin      preston       kepner      addison 
@@ -28,5 +30,15 @@ g <- graph.data.frame(ga.data,directed = F)
          0.0          0.0          0.0          0.0          0.0          0.0          0.0          0.0          0.0          0.0 
          ben        avery 
          0.0          0.0 
-         
+    
+
+```R
+  > which.max(betweenness(g))
+karev 
+    6 
 ```
+
+
+
+
+
