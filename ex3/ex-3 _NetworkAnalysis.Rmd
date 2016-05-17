@@ -71,6 +71,8 @@ closeness(g)
 ```R
 
 vec <-evcent(g)
+vec$vector
+
         lexi         owen        sloan       torres        derek        karev     o'malley         yang         grey        chief 
  0.525580626  0.067803814  0.641812107  0.717877288  0.250030245  1.000000000  0.600697535  0.023949556  0.300492721  0.000000000 
   ellis grey   susan grey       bailey        izzie       altman      arizona        colin      preston       kepner      addison 
@@ -166,5 +168,113 @@ plot(g2, vertex.size=5, vertex.label=NA,vertex.color=memb, asp=FALSE)
 ![](2algo.png)
 
 
+
+
+
+***
+
+
+## Question 2
+### Using network analysis for Twitter text data
+
+
+```R
+library("igraph")
+load("termDocMatrix.rdata")
+dim("termDocMatrix")
+## [1]  21 154
+
+```
+
+```R
+termDocMatrix <- as.matrix(termDocMatrix)
+
+termDocMatrix[termDocMatrix>=1] <- 1
+
+termMatrix <- termDocMatrix %*% t(termDocMatrix)
+
+```
+
+```R
+g <- graph.adjacency(termMatrix, weighted=T, mode = "undirected")
+
+g <- simplify(g)
+
+
+V(g)$label <- V(g)$name
+V(g)$degree <- degree(g)
+
+```
+
+
+
+### Betweenness
+
+```R
+ > betweenness(g)
+ ```
+ ```
+    analysis applications         code    computing         data     examples introduction       mining      network 
+   3.9939394    4.1873737   13.6893939   22.3222222    9.5303030    0.5111111   17.2323232   20.6666667   17.8202020 
+     package     parallel    positions postdoctoral            r     research       series       slides       social 
+  12.0050505    7.3722222    0.2500000    0.0000000    0.0000000    8.6247475    1.6333333   22.5272727    5.6242424 
+        time     tutorial        users 
+   1.6333333   24.3863636    4.6151515 
+    
+```
+
+
+```R
+  > which.max(betweenness(g))
+    tutorial 
+          20  
+```
+
+## Closeness
+
+```R
+closeness(g)
+```
+```R
+    analysis applications         code    computing         data     examples introduction       mining      network 
+  0.01960784   0.01818182   0.02272727   0.02500000   0.02222222   0.02040816   0.02380952   0.02380952   0.02500000 
+     package     parallel    positions postdoctoral            r     research       series       slides       social 
+  0.02222222   0.02380952   0.01694915   0.01785714   0.01282051   0.01960784   0.02040816   0.02564103   0.02127660 
+        time     tutorial        users 
+  0.02040816   0.02631579   0.01886792 
+
+```
+
+```R
+> which.max(closeness(g))
+  tutorial 
+        20
+   
+```
+
+
+
+##  Eigenvector
+
+```R
+
+vec <-evcent(g)
+vec$vector
+
+    analysis applications         code    computing         data     examples introduction       mining      network 
+   0.4298906    0.2193225    0.2091967    0.1917759    0.8970037    0.4108851    0.1360912    0.8777195    0.2563197 
+     package     parallel    positions postdoctoral            r     research       series       slides       social 
+   0.4317203    0.1709104    0.1088632    0.1520164    1.0000000    0.1307590    0.1987545    0.2970475    0.1735624 
+        time     tutorial        users 
+   0.1987545    0.3065386    0.4393775 
+
+```
+
+```R
+> which.max(vec$vector)
+   r 
+  14
+
+```
 
 
