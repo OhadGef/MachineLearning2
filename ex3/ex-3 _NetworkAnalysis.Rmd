@@ -5,9 +5,8 @@ date: "May 10, 2016"
 output: html_document
 ---
 
----
 # Question 1 
----
+
 
 ```R
 library(igraph)
@@ -93,8 +92,7 @@ karev
 
 ## Community Detection
 
-1# Girvan-Newman community detection algorithm
-
+### 1) Girvan-Newman community detection algorithm 
 ```R
 g2 <- graph.data.frame(ga.data,directed = F)
 fc <-edge.betweenness.community(g2)
@@ -127,7 +125,7 @@ plot(g2, vertex.size=5, vertex.label=NA,vertex.color=memb, asp=FALSE)
 
 
 
-2# Girvan-Newman community detection algorithm 
+### 2) Girvan-Newman community detection algorithm 
 
 ```R
 g2 <- graph.data.frame(ga.data,directed = F)
@@ -171,29 +169,29 @@ plot(g2, vertex.size=5, vertex.label=NA,vertex.color=memb, asp=FALSE)
 ***
 ***
 <br>
----
+
 # Question 2
----
+
 ### Using network analysis for Twitter text data
 
-Louding the data 
+#### loading the data
 ```R
 library("igraph")
 load("termDocMatrix.rdata")
 dim("termDocMatrix")
 ## [1]  21 154
-
 ```
 
-Transform Data into an Adjacency Matrix and making it Boolean
+#### Transform Data into an Adjacency Matrix and making it Boolean
 ```R
 termDocMatrix <- as.matrix(termDocMatrix)
 termDocMatrix[termDocMatrix>=1] <- 1
 termMatrix <- termDocMatrix %*% t(termDocMatrix)
-
 ```
-build a graph from the above matrix.
+
+#### build a graph from the above matrix.
 ```R
+# build a graph.
 g <- graph.adjacency(termMatrix, weighted=T, mode = "undirected")
 
 # Remove loops (self edges)
@@ -212,17 +210,14 @@ V(g)$degree <- degree(g)
 ```R
  > betweenness(g)
  ```
- ```
+ ```R
     analysis applications         code    computing         data     examples introduction       mining      network 
    3.9939394    4.1873737   13.6893939   22.3222222    9.5303030    0.5111111   17.2323232   20.6666667   17.8202020 
      package     parallel    positions postdoctoral            r     research       series       slides       social 
   12.0050505    7.3722222    0.2500000    0.0000000    0.0000000    8.6247475    1.6333333   22.5272727    5.6242424 
         time     tutorial        users 
    1.6333333   24.3863636    4.6151515 
-    
 ```
-
-
 ```R
   > which.max(betweenness(g))
   tutorial 
@@ -241,14 +236,11 @@ closeness(g)
   0.02222222   0.02380952   0.01694915   0.01785714   0.01282051   0.01960784   0.02040816   0.02564103   0.02127660 
         time     tutorial        users 
   0.02040816   0.02631579   0.01886792 
-
 ```
-
 ```R
 > which.max(closeness(g))
   tutorial 
   20
-   
 ```
 
 
@@ -256,7 +248,6 @@ closeness(g)
 ##  Eigenvector
 
 ```R
-
 vec <-evcent(g)
 vec$vector
 
@@ -266,9 +257,7 @@ vec$vector
    0.4317203    0.1709104    0.1088632    0.1520164    1.0000000    0.1307590    0.1987545    0.2970475    0.1735624 
         time     tutorial        users 
    0.1987545    0.3065386    0.4393775 
-
 ```
-
 ```R
 > which.max(vec$vector)
   r 
@@ -277,11 +266,9 @@ vec$vector
 ```
 ## Community Detection
 
-### 1 Girvan-Newman community detection algorithm
+### 1) Girvan-Newman community detection algorithm
 
 ```R
-
-
 fc <-walktrap.community(g)
 fc$modularity
 
@@ -296,7 +283,6 @@ which.max(fc$modularity)
 
 ```R
 memb <- membership(fc)
-
 > memb
            analysis applications         code    computing         data     examples introduction       mining      network 
            1            3            2            5            3            2            1            3            1 
@@ -314,7 +300,7 @@ plot(g, vertex.size=5, vertex.label=NA,vertex.color=memb, asp=FALSE)
 
 
 
-### 2 Girvan-Newman community detection algorithm 
+### 2) Girvan-Newman community detection algorithm 
 
 ```R
 fc1 <-edge.betweenness.community(g)
