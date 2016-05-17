@@ -4,11 +4,9 @@ author: "Ohad Gefen & Nadav Gilron"
 date: "May 10, 2016"
 output: html_document
 ---
-
-# Ex-3 Network Analysis
-
-## Question 1 
-
+---
+# Question 1 
+---
 
 ```R
 library(igraph)
@@ -170,12 +168,14 @@ plot(g2, vertex.size=5, vertex.label=NA,vertex.color=memb, asp=FALSE)
 
 
 ***
+***
 <br>
-
-## Question 2
+---
+# Question 2
+---
 ### Using network analysis for Twitter text data
 
-
+Louding the data 
 ```R
 library("igraph")
 load("termDocMatrix.rdata")
@@ -184,21 +184,21 @@ dim("termDocMatrix")
 
 ```
 
+Transform Data into an Adjacency Matrix and making it Boolean
 ```R
 termDocMatrix <- as.matrix(termDocMatrix)
-
 termDocMatrix[termDocMatrix>=1] <- 1
-
 termMatrix <- termDocMatrix %*% t(termDocMatrix)
 
 ```
-
+build a graph from the above matrix.
 ```R
 g <- graph.adjacency(termMatrix, weighted=T, mode = "undirected")
 
+# Remove loops (self edges)
 g <- simplify(g)
 
-
+# set labels and degrees of vertices
 V(g)$label <- V(g)$name
 V(g)$degree <- degree(g)
 
@@ -224,8 +224,8 @@ V(g)$degree <- degree(g)
 
 ```R
   > which.max(betweenness(g))
-    tutorial 
-          20  
+  tutorial 
+  20  
 ```
 
 ## Closeness
@@ -246,7 +246,7 @@ closeness(g)
 ```R
 > which.max(closeness(g))
   tutorial 
-        20
+  20
    
 ```
 
@@ -270,15 +270,16 @@ vec$vector
 
 ```R
 > which.max(vec$vector)
-   r 
+  r 
   14
 
 ```
 ## Community Detection
 
-1# Girvan-Newman community detection algorithm
+### 1 Girvan-Newman community detection algorithm
 
 ```R
+
 
 fc <-walktrap.community(g)
 fc$modularity
@@ -312,7 +313,7 @@ plot(g, vertex.size=5, vertex.label=NA,vertex.color=memb, asp=FALSE)
 
 
 
-2# Girvan-Newman community detection algorithm 
+### 2 Girvan-Newman community detection algorithm 
 
 ```R
 fc1 <-edge.betweenness.community(g)
